@@ -259,7 +259,6 @@ body {
 ═══════════════════════════════════════════════════════ */
 #s-config {
   align-items: center;
-  justify-content: center;
   overflow-y: auto;
   background: radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.06) 0%, transparent 60%), var(--bg);
 }
@@ -270,6 +269,7 @@ body {
   align-items: center;
   padding: 40px 20px;
   width: 100%;
+  margin: auto;
 }
 
 .cfg-logo {
@@ -300,7 +300,8 @@ body {
 }
 
 .logo-container {
-  width: 200px;
+  max-width: 200px;
+  width: 100%;
   height: auto;
   margin: 0 auto 20px;
   display: flex;
@@ -313,7 +314,7 @@ body {
   width: 100%;
   max-width: 200px;
   height: auto;
-  object-fit: contain;
+  display: block;
 }
 
 .cfg-logo h1 {
@@ -402,7 +403,6 @@ body {
 ═══════════════════════════════════════════════════════ */
 #s-welcome {
   align-items: center;
-  justify-content: center;
   overflow-y: auto;
   background: radial-gradient(ellipse at 50% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 60%), var(--bg);
 }
@@ -412,11 +412,12 @@ body {
   max-width: 580px;
   padding: 40px 24px;
   width: 100%;
+  margin: auto;
   animation: slideUp 0.5s ease;
 }
 
 .wlc-seal {
-  width: auto;
+  width: 180px;
   height: auto;
   margin: 40px auto 48px;
   display: flex;
@@ -427,9 +428,9 @@ body {
 }
 .wlc-seal img {
   width: 100%;
-  max-width: 180px;
+  max-width: 100%;
   height: auto;
-  object-fit: contain;
+  display: block;
 }
 
 .wlc-firm {
@@ -582,9 +583,10 @@ body {
 .t-logo-badge img {
   width: auto;
   height: auto;
-  max-height: 40px;
-  max-width: 50px;
+  max-height: 52px;
+  max-width: 110px;
   object-fit: contain;
+  display: block;
 }
 
 .t-logo-name {
@@ -1320,7 +1322,7 @@ body {
 
   /* Welcome: smaller name */
   .wlc-name { font-size: 26px; }
-  .wlc-seal { width: 80px; height: 80px; font-size: 32px; }
+  .wlc-seal { width: 120px; max-width: 120px; height: auto; }
 
   /* Results: single column */
   .res-body {
