@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Vieira Alves Advocacia — Avaliação de Estágio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       CONFIG SCREEN
+  ══════════════════════════════════ -->
+  <div id="s-config" class="screen active">
+    <div class="cfg-container">
+      <div class="cfg-logo">
+        <div class="cfg-seal">⚖</div>
+        <h1>Vieira Alves Advocacia</h1>
+        <p>Sistema de Avaliação de Estágio</p>
+      </div>
+      <div class="cfg-card">
+        <div class="cfg-card-title">Configurar Avaliação</div>
+        <div class="cfg-card-sub">Preencha os dados abaixo antes de entregar o dispositivo ao candidato.</div>
+        <div class="cfg-grid">
+          <div class="form-group">
+            <label class="form-label" for="cfg-name">Nome Completo do Candidato</label>
+            <input id="cfg-name" type="text" class="form-control" placeholder="Ex: Ana Carolina Souza" autocomplete="off">
+          </div>
+          <hr class="cfg-hr">
+
+          <!-- Número de Questões -->
+          <div class="form-group">
+            <label class="form-label">Número de Questões</label>
+            <div class="preset-chips" id="chips-q">
+              <button class="chip" data-val="10">10</button>
+              <button class="chip" data-val="15">15</button>
+              <button class="chip active" data-val="20">20</button>
+              <button class="chip" data-val="25">25</button>
+              <button class="chip" data-val="30">30</button>
+              <button class="chip" data-val="40">40</button>
+              <button class="chip" data-val="50">50</button>
+            </div>
+            <div class="stepper">
+              <button class="stepper-btn" id="q-minus" aria-label="Diminuir">−</button>
+              <div class="stepper-display">
+                <span class="stepper-val" id="dq">20</span>
+                <span class="stepper-lbl">questões</span>
+              </div>
+              <button class="stepper-btn" id="q-plus" aria-label="Aumentar">+</button>
+            </div>
+          </div>
+
+          <!-- Tempo de Prova -->
+          <div class="form-group">
+            <label class="form-label">Tempo de Prova</label>
+            <div class="preset-chips" id="chips-t">
+              <button class="chip" data-val="15">15 min</button>
+              <button class="chip" data-val="20">20 min</button>
+              <button class="chip active" data-val="30">30 min</button>
+              <button class="chip" data-val="45">45 min</button>
+              <button class="chip" data-val="60">60 min</button>
+              <button class="chip" data-val="90">90 min</button>
+            </div>
+            <div class="stepper">
+              <button class="stepper-btn" id="t-minus" aria-label="Diminuir">−</button>
+              <div class="stepper-display">
+                <span class="stepper-val" id="dt">30</span>
+                <span class="stepper-lbl">minutos</span>
+              </div>
+              <button class="stepper-btn" id="t-plus" aria-label="Aumentar">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="cfg-footer">
+          <button class="btn btn-primary btn-lg" id="btn-start-cfg">Gerar Prova &nbsp;→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       WELCOME SCREEN
+  ══════════════════════════════════ -->
+  <div id="s-welcome" class="screen">
+    <div class="wlc-container">
+      <div class="wlc-seal">⚖</div>
+      <p class="wlc-firm">Vieira Alves Advocacia</p>
+      <div class="wlc-name" id="w-name">Candidato</div>
+      <div class="wlc-sub">Boa sorte na sua avaliação!</div>
+      <div class="wlc-cards">
+        <div class="wlc-card">
+          <div class="wlc-card-val" id="w-q">20</div>
+          <div class="wlc-card-lbl">Questões</div>
+        </div>
+        <div class="wlc-card-divider"></div>
+        <div class="wlc-card">
+          <div class="wlc-card-val" id="w-t">30</div>
+          <div class="wlc-card-lbl">Minutos</div>
+        </div>
+        <div class="wlc-card-divider"></div>
+        <div class="wlc-card">
+          <div class="wlc-card-val">4</div>
+          <div class="wlc-card-lbl">Alternativas</div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg" id="btn-start-test">Iniciar Prova &nbsp;→</button>
+      <div class="wlc-note">
+        ⚠ Ao clicar em <strong>Iniciar Prova</strong> o cronômetro será ativado imediatamente. A prova
+        se encerrará automaticamente ao fim do tempo. Não atualize a página durante a realização.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       TEST SCREEN
+  ══════════════════════════════════ -->
+  <div id="s-test" class="screen">
+
+    <!-- Header -->
+    <div class="t-header">
+      <div class="t-header-left">
+        <button class="btn-sidebar-toggle" id="btn-toggle-sidebar" aria-label="Abrir menu de questões">☰</button>
+        <div class="t-logo">
+          <div class="t-logo-badge">VA</div>
+          <span class="t-logo-name">Vieira Alves</span>
+        </div>
+        <div class="t-tab">Informática Básica</div>
+      </div>
+      <div class="t-header-center">
+        <div class="t-cand-lbl">Candidato</div>
+        <div class="t-cand-name" id="t-name">—</div>
+      </div>
+      <div class="t-header-right">
+        <div class="t-timer" id="t-timer">00:00</div>
+      </div>
+    </div>
+
+    <!-- Mobile progress bar (below header) -->
+    <div class="t-mobile-prog">
+      <div class="t-mobile-prog-fill" id="t-mobile-prog-fill"></div>
+    </div>
+
+    <!-- Body -->
+    <div class="t-body">
+      <!-- Sidebar overlay (mobile) -->
+      <div id="sidebar-overlay"></div>
+
+      <!-- Sidebar -->
+      <div class="t-sidebar" id="t-sidebar">
+        <div class="sb-close-row">
+          <button class="sb-close-btn" id="btn-close-sidebar" aria-label="Fechar menu">✕</button>
+        </div>
+        <div class="sb-label">Avaliação</div>
+        <div class="sb-title">Informática Básica</div>
+        <div class="sb-prog" id="sb-prog">0/20 (0%)</div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+        <div class="q-grid" id="q-grid"></div>
+        <hr class="sb-divider">
+        <div class="sb-legend">
+          <div class="legend-row"><div class="leg-dot leg-answered"></div>Respondida</div>
+          <div class="legend-row"><div class="leg-dot leg-current"></div>Atual</div>
+          <div class="legend-row"><div class="leg-dot leg-empty"></div>Não respondida</div>
+        </div>
+        <div class="sb-spacer"></div>
+        <button class="btn-fin" id="btn-finalize">◼&ensp;Finalizar Prova</button>
+      </div>
+
+      <!-- Main content -->
+      <div class="t-main" id="t-main">
+        <div class="q-header">
+          <div class="q-num-row">
+            <div class="q-num" id="q-num">01</div>
+            <div class="q-head-info">
+              <h2 class="q-title">Informática Básica</h2>
+              <div class="q-cat-badge">
+                <span class="cat-dot"></span>
+                <span id="q-cat">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-body">
+          <div class="q-text" id="q-text">Carregando…</div>
+          <div class="opts" id="opts"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom navigation -->
+    <div class="t-bottom">
+      <button class="btn btn-ghost" id="btn-prev">← Anterior</button>
+      <span id="nav-info" class="nav-info">Questão 1 de 20</span>
+      <button class="btn btn-primary" id="btn-next">Próxima →</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       COMPLETE SCREEN
+  ══════════════════════════════════ -->
+  <div id="s-complete" class="screen">
+    <div class="cmp-container">
+      <div class="cmp-icon">✓</div>
+      <h1 class="cmp-title">Parabéns, <span id="c-name">—</span>!</h1>
+      <p class="cmp-sub">
+        Sua prova foi entregue com sucesso.<br>
+        Por favor, <strong>aguarde o instrutor</strong> para prosseguir.
+      </p>
+      <div class="cmp-stats">
+        <div class="cmp-stat"><div class="cmp-stat-val" id="c-ans">0</div><div class="cmp-stat-lbl">Respondidas</div></div>
+        <div class="cmp-stat"><div class="cmp-stat-val" id="c-skip">0</div><div class="cmp-stat-lbl">Em branco</div></div>
+        <div class="cmp-stat"><div class="cmp-stat-val" id="c-time">00:00</div><div class="cmp-stat-lbl">Tempo usado</div></div>
+      </div>
+      <div class="cmp-waiting">
+        <div class="spinner"></div>
+        <p>Aguardando <strong>chamada do instrutor</strong>…</p>
+      </div>
+      <button class="btn-inst" id="btn-results">Acesso do Instrutor — Ver Resultado</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       RESULTS SCREEN
+  ══════════════════════════════════ -->
+  <div id="s-results" class="screen">
+    <div class="res-header">
+      <div>
+        <h1>Resultado da Avaliação</h1>
+        <div class="res-sub" id="r-sub">—</div>
+      </div>
+      <button class="btn btn-dark btn-sm" id="btn-new-eval">+ Nova Avaliação</button>
+    </div>
+    <div class="res-body">
+      <!-- Summary panel -->
+      <div class="res-summary">
+        <div class="res-sum-title">Desempenho Geral</div>
+        <div class="score-circle" id="sc-circle">
+          <div class="score-pct" id="sc-pct">0%</div>
+          <div class="score-frac" id="sc-frac">0/0</div>
+        </div>
+        <div class="res-stats">
+          <div class="res-stat"><div class="res-stat-val color-green" id="r-ok">0</div><div class="res-stat-lbl">Acertos</div></div>
+          <div class="res-stat"><div class="res-stat-val color-red" id="r-ko">0</div><div class="res-stat-lbl">Erros</div></div>
+          <div class="res-stat"><div class="res-stat-val color-muted" id="r-sk">0</div><div class="res-stat-lbl">Em branco</div></div>
+          <div class="res-stat"><div class="res-stat-val" id="r-tm">—</div><div class="res-stat-lbl">Tempo</div></div>
+        </div>
+        <div class="lvl-badge" id="r-lvl">—</div>
+        <div class="res-footer-note">Avaliação de Informática Básica<br>Vieira Alves Advocacia</div>
+      </div>
+
+      <!-- Questions review -->
+      <div class="res-questions-area">
+        <div class="res-questions-title">Revisão das Questões</div>
+        <div class="res-qs" id="res-qs"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       MODAL — Confirmação Finalizar
+  ══════════════════════════════════ -->
+  <div class="modal-bg" id="modal">
+    <div class="modal">
+      <h3>Finalizar Prova?</h3>
+      <p>Você está prestes a entregar sua prova. Esta ação <strong>não pode ser desfeita</strong>.</p>
+      <div class="modal-warn" id="modal-warn"></div>
+      <div class="modal-btns">
+        <button class="btn btn-ghost" id="btn-cancel-modal">Continuar Prova</button>
+        <button class="btn btn-danger" id="btn-confirm-finalize">Entregar Prova</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
