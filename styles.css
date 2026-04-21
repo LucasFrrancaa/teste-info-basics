@@ -299,6 +299,23 @@ body {
   border-radius: 50%;
 }
 
+.logo-container {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 12px rgba(201, 168, 76, 0.15));
+}
+
+.logo-img {
+  margin-top: 80px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .cfg-logo h1 {
   font-size: 20px;
   font-weight: 600;
@@ -401,23 +418,16 @@ body {
 .wlc-seal {
   width: 110px;
   height: 110px;
-  border: 1.5px solid var(--gold);
-  border-radius: 50%;
+  margin: 0 auto 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 28px;
-  font-size: 44px;
-  color: var(--gold);
-  position: relative;
+  filter: drop-shadow(0 4px 12px rgba(201, 168, 76, 0.15));
 }
-.wlc-seal::before {
-  content: '';
-  position: absolute;
-  inset: -10px;
-  border: 1px solid rgba(201, 168, 76, 0.15);
-  border-radius: 50%;
-  animation: pulse 3s ease-in-out infinite;
+.wlc-seal img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .wlc-firm {
@@ -558,17 +568,20 @@ body {
 }
 
 .t-logo-badge {
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--gold);
   flex-shrink: 0;
+  background: transparent;
+  border: none;
+}
+.t-logo-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: 40px;
 }
 
 .t-logo-name {
